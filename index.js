@@ -1,56 +1,50 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
+import inquirer from "inquirer";
+import chalkAnimation from "chalk-animation";
 import chalk from "chalk";
-import chalkanimation from "chalk-animation";
-console.clear();
-const sleep = () => {
+let sleep = () => {
     return new Promise((res) => {
         setTimeout(res, 3000);
     });
 };
 async function welcome() {
-    let rainbowTitle = chalkanimation.rainbow('=========>>>Welcome to RUBAB-BANK<<<=========');
+    let rainbowTitle = chalkAnimation.rainbow(`Lets Play Number Guessing Game           \n\n          Developed By Rubab Nasir`); //start
     await sleep();
-    rainbowTitle.stop();
+    rainbowTitle.stop(); //stop after 2sec
+    console.log();
 }
 await welcome();
-class Transaction {
-    AccNo;
-    AccHolderName;
-    Balance;
-    constructor(accno, name, bal) {
-        this.AccNo = accno;
-        this.AccHolderName = name;
-        this.Balance = bal;
+async function guessGame() {
+    const systemNumber = Math.floor(Math.random() * 10);
+    const userNumber = await inquirer.prompt([
+        {
+            type: "input",
+            name: "ask",
+            message: "(User) What Is Your Name? \n"
+        },
+        {
+            type: "number",
+            name: "userGuess",
+            message: "Enter your number between 1-10 \n"
+        }
+    ]);
+    const { userGuess } = userNumber;
+    console.log("Your Guess:   ", userGuess, "\n Sytem Guess:  ", systemNumber);
+    if (userGuess === systemNumber) {
+        console.log(chalk.bgMagentaBright(`Conguratulation You Won!`));
     }
-    BalanceCheck() {
-        console.log('--------------------------COUNTER BALANCE CHECK--------------------------');
-        if (this.Balance < 0) {
-            console.log('Insufficient Balance Please Deposit');
-        }
-        else {
-            console.log(chalk.bgRed.bold('Your Account Balance is: ' + this.Balance));
-        }
-    }
-    Deposit(amount) {
-        console.log('--------------------------COUNTER CASH DEPOSIT--------------------------');
-        this.Balance += amount;
-        console.log('Amount of ' + amount + " " + 'Deposit Successfully');
-        console.log(chalk.bgBlue.bold('Your Current Balance is: ' + this.Balance));
-    }
-    Withdraw(amount) {
-        console.log('--------------------------COUNTER CASH WITHDRAW--------------------------');
-        if (amount > this.Balance) {
-            console.log(chalk.bgRed.bold('Not Enough Balance'));
-        }
-        else {
-            this.Balance -= amount;
-            console.log('Amount of ' + amount + ' Withdrawn Successfully');
-            console.log(chalk.bgYellow.bold('Your Current Balance is: ' + this.Balance));
-        }
+    else {
+        console.log(chalk.bgRedBright `You Guessed It Wrong TRY AGAIN!`);
     }
 }
-let user1 = new Transaction(786, "Vj Kazim", 0);
-user1.BalanceCheck();
-user1.Deposit(100000);
-user1.Withdraw(50000);
-user1.BalanceCheck();
+async function startAgain() {
+    do {
+        await guessGame();
+        var again = await inquirer.prompt({
+            type: "input",
+            name: "restart",
+            message: "If You Want To Play Again Type (Y/N)? \n "
+        });
+    } while (again.restart == "Y" || again.restart == "y" || again.restart == "YES" || again.restart == "yes");
+}
+startAgain();
