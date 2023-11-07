@@ -1,5 +1,5 @@
 {
-  "name": "@ummerubab27/Countdown_timer",
+  "name": "@ummerubab27/Opp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,15 +9,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Umm E Rubab",
+  "author": "",
   "license": "ISC",
-  "dependencies": {
-    "chalk-animation": "^2.0.3",
-    "inquirer": "^9.2.11"
-  },
   "devDependencies": {
-    "@types/chalk": "^2.2.0",
-    "@types/chalk-animation": "^1.6.2",
-    "@types/inquirer": "^9.0.6"
+    "@types/inquirer": "^9.0.6",
+    "@types/node": "^20.8.10"
+  },
+  "dependencies": {
+    "inquirer": "^9.2.11"
   }
 }
