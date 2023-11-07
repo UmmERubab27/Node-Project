@@ -1,5 +1,5 @@
 {
-  "name": "@ummerubab27/Quiz_System",
+  "name": "@ummerubab27/Countdown_timer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Umm E Rubab",
   "license": "ISC",
   "dependencies": {
-    "inquirer": "^9.2.11",
-    "package-json": "^8.1.1"
+    "chalk-animation": "^2.0.3",
+    "inquirer": "^9.2.11"
   },
   "devDependencies": {
-    "@types/inquirer": "^9.0.6",
-    "@types/node": "^20.8.9"
+    "@types/chalk": "^2.2.0",
+    "@types/chalk-animation": "^1.6.2",
+    "@types/inquirer": "^9.0.6"
   }
 }
